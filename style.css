@@ -90,3 +90,10 @@ main + footer {
   padding: 1rem;
   border-radius: 6px;
 }
+
+/* calculator */
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
