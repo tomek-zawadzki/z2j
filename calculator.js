@@ -26,8 +26,8 @@ let a = 0;
 let b = 0;
 let sign = "";
 
-const addition = (a, b) => {
-  result = parseInt(a) + parseInt(b);
+const addition = (first, second) => {
+  result = parseInt(first) + parseInt(second);
   return (resultValue.innerHTML = result);
 };
 const substraction = (a, b) => {
@@ -64,30 +64,45 @@ const clickNumber = (e) => {
 calculatorBox.addEventListener("click", clickNumber);
 
 plusBtn.addEventListener("click", () => {
-  resultValue.innerHTML = calculatorInput.value;
-
   sign = "+";
-  result = calculatorInput.value;
   if (a === 0) {
-    a = result;
-    calculatorInput.value = "";
+    a = calculatorInput.value;
+    result = a;
+    resultValue.innerHTML = result;
   } else {
     b = calculatorInput.value;
     addition(result, b);
-    calculatorInput.value = "";
   }
+
   console.log(
     `+ clicked  a = ${a}   b = ${b}   sign = ${sign}   result = ${result}`
   );
+
+  calculatorInput.value = "";
 });
 
 equalsBtn.addEventListener("click", () => {
   b = calculatorInput.value;
   if (sign === "+") {
-    console.log(
-      `= clicked  a = ${a}   b = ${b}   sign= ${sign}   result= ${result}`
-    );
     addition(result, b);
-    calculatorInput.value = "";
   }
+
+  calculatorInput.value = "";
 });
+
+// resultValue.innerHTML = calculatorInput.value;
+
+// sign = "+";
+// result = calculatorInput.value;
+// if (a === 0) {
+//   a = result;
+//   calculatorInput.value = "";
+// } else {
+//   b = calculatorInput.value;
+
+//   addition(result, b);
+//   calculatorInput.value = "";
+// }
+// console.log(
+//   `+ clicked  a = ${a}   b = ${b}   sign = ${sign}   result = ${result}`
+// );
