@@ -6,6 +6,13 @@
   padding: 0;
 }
 
+/* calculator */
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
 .calculator {
   text-align: center;
   width: fit-content;
@@ -22,7 +29,18 @@
   width: 3.2rem;
   border: none;
   font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
+
+.btn:hover {
+  background-color: rgb(224, 182, 182);
+}
+
+.btn:active {
+  background-color: rgb(190, 142, 142);
+}
+
 .calculator__operations {
   display: flex;
   flex-direction: column;
@@ -35,6 +53,7 @@
   width: 80%;
   font-size: 1.8rem;
   margin-top: 0.6rem;
+  text-align: right;
 }
 
 .operation__show {
@@ -42,4 +61,9 @@
   justify-content: space-between;
   font-size: 2.2rem;
   width: 80%;
+}
+
+.sign-view,
+.result-value {
+  font-size: 2.6rem;
 }
