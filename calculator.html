@@ -7,6 +7,7 @@
     <title>kalkulator</title>
     <script defer src="calculator.js"></script>
     <link href="style.css" type="text/css" rel="stylesheet" />
+    <link href="calculator.css" type="text/css" rel="stylesheet" />
   </head>
   <body>
     <header class="main-header">
@@ -23,22 +24,28 @@
       </header>
 
       <section class="calculator">
-        <p class="result-value">0</p>
-        <input
-          class="calculator__input"
-          type="text"
-          name="input"
-          id="calculator"
-        />
+        <div class="calculator__operations">
+          <input
+            class="calculator__input"
+            type="text"
+            name="input"
+            id="calculator"
+          />
+          <div class="operation__show">
+            <p class="sign-view"></p>
+            <p class="result-value">0</p>
+          </div>
+          <p class="calculator__alert"></p>
+        </div>
         <div class="buttons">
           <button class="btn btn-sign">(</button>
           <button class="btn btn-sign">)</button>
           <button class="btn btn-sign">%</button>
-          <button class="btn btn-sign reset-btn">AC</button>
+          <button class="btn reset-btn">AC</button>
           <button class="btn btn-number seven-btn">7</button>
           <button class="btn btn-number eight-btn">8</button>
           <button class="btn btn-number nine-btn">9</button>
-          <button class="btn btn-signdivision-btn">/</button>
+          <button class="btn btn-sign division-btn">/</button>
           <button class="btn btn-number four-btn">4</button>
           <button class="btn btn-number five-btn">5</button>
           <button class="btn btn-number six-btn">6</button>
@@ -49,7 +56,7 @@
           <button class="btn btn-sign minus-btn">-</button>
           <button class="btn btn-number zero-btn">0</button>
           <button class="btn btn-sign dot-btn">.</button>
-          <button class="btn btn-sign equals-btn">=</button>
+          <button class="btn equals-btn">=</button>
           <button class="btn btn-sign plus-btn">+</button>
         </div>
       </section>
