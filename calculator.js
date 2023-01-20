@@ -65,12 +65,12 @@ const calculate = () => {
     multiplication(result, b);
   } else if (sign === "mod") {
     modulo(result, b);
-  } else {
-    alertInfo.textContent = "najpier podaj liczbę";
+  } else if (calculatorInput.value === "") {
+    alert("najpier podaj liczbę");
+    // alertInfo.textContent = "najpier podaj liczbę";
   }
 
   sign.innerHTML = "";
-
   calculatorInput.value = "";
 };
 
@@ -84,11 +84,14 @@ calculateBtns.forEach((btn) => {
       result = parseFloat(a).toFixed(2);
       resultValue.innerHTML = result;
     } else if (calculatorInput.value === "") {
-      alertInfo.textContent = "najpier podaj liczbę";
+      alert("najpier podaj liczbę");
+      // alertInfo.textContent = "najpier podaj liczbę";
     } else {
       b = calculatorInput.value;
       calculate();
     }
+
+    console.log(result);
 
     calculatorInput.value = "";
   });

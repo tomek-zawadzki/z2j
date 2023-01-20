@@ -58,9 +58,31 @@
 
 .operation__show {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
   font-size: 2.2rem;
   width: 80%;
+}
+
+.operation__show--text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 2.6rem;
+}
+
+.operation__show--result {
+  width: 100%;
+  text-align: end;
+}
+
+.sign-text {
+  font-size: 1rem;
+}
+
+.result-text {
+  font-size: 1.5rem;
 }
 
 .sign-view,
