@@ -4,7 +4,6 @@ const multiplicationBtn = document.querySelector(".multiplication-btn");
 const divisionBtn = document.querySelector(".division-btn");
 const resetBtn = document.querySelector(".reset-btn");
 const equalsBtn = document.querySelector(".equals-btn");
-const dotBtn = document.querySelector(".dot-btn");
 const acBtn = document.querySelector(".ac-btn");
 const cBtn = document.querySelector(".c-btn");
 const percentBtn = document.querySelector(".percent-btn");
@@ -15,6 +14,7 @@ const calculatorInput = document.querySelector(".calculator__input");
 const resultValue = document.querySelector(".result-value");
 const signView = document.querySelector(".sign-view");
 const alertInfo = document.querySelector(".calculator__alert");
+const calculateBtns = document.querySelectorAll(".btn-sign");
 
 let result = 0;
 let a = 0;
@@ -34,21 +34,12 @@ const division = (first, second) => {
   return (resultValue.innerHTML = result.toFixed(2));
 };
 const multiplication = (first, second) => {
-  if (first === 0 || second === 0) {
-    result = 0;
-    return (resultValue.innerHTML = result.toFixed(2));
-  } else {
-    result = parseFloat(first) * parseFloat(second);
-    return (resultValue.innerHTML = result.toFixed(2));
-  }
+  result = parseFloat(first) * parseFloat(second);
+  return (resultValue.innerHTML = result.toFixed(2));
 };
 const modulo = (first, second) => {
   result = parseFloat(first) % parseFloat(second);
   return (resultValue.innerHTML = result.toFixed(2));
-};
-const reset = () => {
-  result = 0;
-  return result;
 };
 
 const clickNumber = (e) => {
@@ -62,106 +53,15 @@ const clickNumber = (e) => {
   }
 };
 
-calculatorBox.addEventListener("click", clickNumber);
-
-plusBtn.addEventListener("click", () => {
-  sign = "+";
-  signView.innerHTML = sign;
-  if (a === 0) {
-    a = calculatorInput.value;
-    result = parseFloat(a).toFixed(2);
-    resultValue.innerHTML = result;
-  } else if (calculatorInput.value === "") {
-    alertInfo.textContent = "najpier podaj liczbę";
-  } else {
-    b = calculatorInput.value;
-    addition(result, b);
-  }
-
-  calculatorInput.value = "";
-});
-
-minusBtn.addEventListener("click", () => {
-  sign = "-";
-  signView.innerHTML = sign;
-
-  if (a === 0) {
-    a = calculatorInput.value;
-    result = parseFloat(a).toFixed(2);
-    resultValue.innerHTML = result;
-  } else if (calculatorInput.value === "") {
-    alertInfo.textContent = "najpier podaj liczbę";
-  } else {
-    b = calculatorInput.value;
-    substraction(result, b);
-  }
-
-  calculatorInput.value = "";
-});
-
-divisionBtn.addEventListener("click", () => {
-  sign = "/";
-  signView.innerHTML = sign;
-
-  if (a === 0) {
-    a = calculatorInput.value;
-    result = parseFloat(a).toFixed(2);
-    resultValue.innerHTML = result;
-  } else if (calculatorInput.value === "") {
-    alertInfo.textContent = "najpier podaj liczbę";
-  } else {
-    b = calculatorInput.value;
-    division(result, b);
-  }
-
-  calculatorInput.value = "";
-});
-
-multiplicationBtn.addEventListener("click", () => {
-  sign = "*";
-  signView.innerHTML = sign;
-
-  if (a === 0) {
-    a = calculatorInput.value;
-    result = parseFloat(a).toFixed(2);
-    resultValue.innerHTML = result;
-  } else if (calculatorInput.value === "") {
-    alertInfo.textContent = "najpier podaj liczbę";
-  } else {
-    b = calculatorInput.value;
-    multiplication(result, b);
-  }
-
-  calculatorInput.value = "";
-});
-
-moduloBtn.addEventListener("click", () => {
-  sign = "mod";
-  signView.innerHTML = sign;
-
-  if (a === 0) {
-    a = calculatorInput.value;
-    result = parseFloat(a).toFixed(2);
-    resultValue.innerHTML = result;
-  } else if (calculatorInput.value === "") {
-    alertInfo.textContent = "najpier podaj liczbę";
-  } else {
-    b = calculatorInput.value;
-    modulo(result, b);
-  }
-
-  calculatorInput.value = "";
-});
-
-equalsBtn.addEventListener("click", () => {
+const calculate = () => {
   b = calculatorInput.value;
-  if (sign === "+" && calculatorInput.value !== "") {
+  if (sign === "+") {
     addition(result, b);
-  } else if (sign === "-" && calculatorInput.value !== "") {
+  } else if (sign === "-") {
     substraction(result, b);
-  } else if (sign === "/" && calculatorInput.value !== "") {
+  } else if (sign === "/") {
     division(result, b);
-  } else if (sign === "*" && calculatorInput.value !== "") {
+  } else if (sign === "*") {
     multiplication(result, b);
   } else if (sign === "mod") {
     modulo(result, b);
@@ -170,27 +70,31 @@ equalsBtn.addEventListener("click", () => {
   }
 
   sign.innerHTML = "";
-  calculatorInput.value = "";
-});
-
-percentBtn.addEventListener("click", () => {
-  if (a === 0) {
-    a = calculatorInput.value;
-    result = a / 100;
-    resultValue.innerHTML = result;
-  } else {
-    result = result / 100;
-    resultValue.innerHTML = result;
-  }
 
   calculatorInput.value = "";
+};
+
+calculateBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    sign = btn.textContent;
+    signView.innerHTML = sign;
+
+    if (a === 0) {
+      a = calculatorInput.value;
+      result = parseFloat(a).toFixed(2);
+      resultValue.innerHTML = result;
+    } else if (calculatorInput.value === "") {
+      alertInfo.textContent = "najpier podaj liczbę";
+    } else {
+      b = calculatorInput.value;
+      calculate();
+    }
+
+    calculatorInput.value = "";
+  });
 });
 
-cBtn.addEventListener("click", () => {
-  calculatorInput.value = "";
-});
-
-resetBtn.addEventListener("click", () => {
+const reset = () => {
   a = 0;
   b = 0;
   result = 0;
@@ -198,4 +102,16 @@ resetBtn.addEventListener("click", () => {
   resultValue.innerHTML = 0;
   sign = "";
   signView.innerHTML = "";
+};
+
+cBtn.addEventListener("click", () => {
+  calculatorInput.value = "";
 });
+
+percentBtn.addEventListener("click", () => {
+  calculatorInput.value /= 100;
+});
+
+calculatorBox.addEventListener("click", clickNumber);
+equalsBtn.addEventListener("click", calculate);
+resetBtn.addEventListener("click", reset);

@@ -90,3 +90,8 @@ main + footer {
   padding: 1rem;
   border-radius: 6px;
 }
+
+.multiplication-btn {
+  font-size: 2rem !important;
+  padding-top: 0.8rem;
+}
